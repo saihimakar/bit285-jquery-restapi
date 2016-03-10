@@ -51,7 +51,7 @@ $(document).ready(function(){
 				});
 			});
 
-    // TODO: Add a  button click event handler using AJAX  to delete a Toy
+    // TODO: Add a  button click event handler using AJAX  to delete a Toy using HTTP DELETE
     			$('#deleteToy').click(function(){
 
     				});

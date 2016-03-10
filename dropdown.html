@@ -2,6 +2,7 @@
 <head><title>jQuery Drop-Down</title>
 	<meta name="author" content="Brian Bansenauer" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+ <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript" src="js/rest_api.js"></script>
 <style>
 	section { padding:1em;  box-sizing: border-box;display: inline-block; vertical-align: top;}
@@ -9,6 +10,8 @@
 	#toy{width:65%; background-color: skyblue;}
 	section>form{display:block; padding-bottom: 2em;}
 </style>
+
+
 </head>
 <body>
 <header><h1>Toy Auction Admin Panel (Incomplete)</h1></header>
@@ -32,9 +35,31 @@
 	</form>
 	<h2>Remove a Toy</h2>
 	<form>
+		<label>Toy Name: <input id="toy_search"/></label>
 		<select id='toy'><option value="">Select a Toy</option></select>
 		<button type="button" id="deleteToy">Delete a Toy</button>
 	</form>
 </section>
+
+<script type="text/javascript">
+$( "#toy_search" ).autocomplete({
+	source: function( request, response ) {
+        $.ajax({
+						type : 'Get',
+						url: 'http://toyauctionapi.azurewebsites.net/api/toys/',
+						data: {name:request.term },
+            success: function(data) {
+                response( $.map( data, function(item) {
+									return {
+										 label:item.Name,
+										 value:item.Name
+									}
+                }));
+            }
+        });
+    },
+    minLength: 2
+});
+</script>
 </body>
 </html>
