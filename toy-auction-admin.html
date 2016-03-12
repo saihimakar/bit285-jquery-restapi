@@ -10,8 +10,6 @@
 	#toy{width:65%; background-color: skyblue;}
 	section>form{display:block; padding-bottom: 2em;}
 </style>
-
-
 </head>
 <body>
 <header><h1>Toy Auction Admin Panel (Incomplete)</h1></header>
@@ -52,7 +50,7 @@ $( "#toy_search" ).autocomplete({
                 response( $.map( data, function(item) {
 									return {
 										 label:item.Name,
-										 value:item.ToyID
+										 value:item.Name
 									}
                 }));
             }
